@@ -1,0 +1,250 @@
+# Birds of Paradise: a Pythonic Photography Adventure
+
+# This project will test:
+# dictionaries (and manipulation),
+# strings (and manipulation),
+# nested loops,
+# functions vs methods,
+# reading and writing to a file.
+
+# objective: communicate: Which bird it is, and b. Where the bird is,
+
+# create a dictionary of rare birds
+
+rarebirds = {
+    "Gold-Crested Toucan":
+        {
+        "Height (m)": 1.1,
+        "Weight (kg)": 35,
+        "Color": "Gold",
+        "Endangered": True,
+        "Aggressive": True
+        },
+    "Pearlescent Kingfisher":
+        {
+        "Height (m)": 0.25,
+        "Weight (kg)": 0.5,
+        "Color": "White",
+        "Endangered": False,
+        "Aggressive": False
+        },
+    "Four-Metre Hummingbird":
+        {
+        "Height (m)": 0.6,
+        "Weight (kg)": 0.5,
+        "Color": "Blue",
+        "Endangered": True,
+        "Aggressive": False
+        },
+    "Giant Eagle":
+        {
+        "Height (m)": 1.5,
+        "Weight (kg)": 52,
+        "Color": "Black and White",
+        "Endangered": True,
+        "Aggressive": True
+        },
+    "Ancient Vulture":
+        {
+        "Height (m)": 2.1,
+        "Weight (kg)": 70,
+        "Color": "Brown",
+        "Endangered": False,
+        "Aggressive": False
+        },
+}
+
+# make a list called birdlocation with the following 7 elements made into strings
+
+birdlocations = [
+    "In the canopy directly above our heads.",
+    "Between my 6 and 9 o’clock above.",
+    "Between my 9 and 12 o’clock above.",
+    "Between my 12 and 3 o’clock above.",
+    "Between my 3 and 6 o’clock above.",
+    "In a nest on the ground.",
+    "Right behind you."
+]
+
+# create a binary code to communicate these locations
+# must use codes of length 3
+
+codes = {
+    111: {birdlocations[0]},
+    110: {birdlocations[1]},
+    101: {birdlocations[2]},
+    100: {birdlocations[3]},
+    11: {birdlocations[4]},
+    10: {birdlocations[5]},
+    1: {birdlocations[6]},
+}
+
+# what is the Giant Eagle’s value for the ‘aggressive’ key
+eagle = rarebirds["Giant Eagle"]
+print(eagle["Aggressive"])
+
+# Using a for loop that goes through the keys and the values of your rarebirds dictionary:
+# Print out a string specifying the names of all the birds we’re looking for.
+# If a bird is aggressive, print out a string advising us to cover our heads.
+# Make use of the actions list in this print statement.
+# If a bird is endangered, print out a string advising us to back away.
+# Make use of the actions list in this print statement.
+
+actions = ["Cover our heads.", "Back away.", "Take a photograph"]
+
+for key in rarebirds.keys():
+        print(key)   # print names of the birds
+
+for item in rarebirds.items():
+        print(item)   # print names, categories, and values of the birds
+
+for value in rarebirds.values():
+        print(value)   # prints category value of the birds
+
+# keys is name of birds
+# items is attribute of birds
+# values is values of attribute
+
+for key, value in rarebirds.items():
+        print("\nBird Name:", key)   # print names of the birds
+        for item in value:
+            print(item + ":", value[item])
+
+
+print("\n_________________ Printing if the bird is endangered or aggressive _________________\n")
+
+for key, value in rarebirds.items():
+    print("\nBird Name:", key)
+    for item in value:
+        if item == "Endangered":
+            if value[item] == True:  # bird is endangered
+                print("Endangered:", actions[1])
+                continue
+    for item in value:
+        if item == "Aggressive":
+            if value[item] == True: # bird is aggressive
+                print("Aggressive:", actions[0],)
+
+
+
+# Your photographer wants a reminder of what the binary codes that you've come up with mean.
+# Using a for loop, iterate through the keys and the values of the codes dictionary.
+# Print out a statement that specifies what each code means.
+
+print("\n_______ Printing reminder of binary codes ___________\n")
+
+for key, value in codes.items():
+    print("\nCode:", key)  # print codes
+    for item in value:
+        print(item)
+
+# Using a for loop, add an extra bird attribute (to go with with height, weight, etc)
+# called 'seen', and set its value to False for all birds.
+
+print("\n__________ Add extra bird attribute called Seen _______________\n")
+
+# keys is name of birds
+# items is attribute of birds
+# values is values of attribute
+
+# for loop unsuccessful
+
+rarebirds["Gold-Crested Toucan"]["Seen"] = False
+rarebirds["Pearlescent Kingfisher"]["Seen"] = False
+rarebirds["Four-Metre Hummingbird"]["Seen"] = False
+rarebirds["Giant Eagle"]["Seen"] = False
+rarebirds["Ancient Vulture"]["Seen"] = False
+
+
+
+print("\n__________ Print dictionary to see if it Seen was added _______________\n")
+
+for key, value in rarebirds.items():
+        print("\nBird Name:", key)   # print names of the birds
+        for item in value:
+            print(item + ":", value[item])
+
+
+# Make a new variable called encounter, and set its value to True.
+
+# Ask the user for an input, and give them the prompt: ‘What do you see?’.
+# Store this input in a variable called sighting.
+
+sighting = input("What do you see?: ").title()
+print("You see:", sighting)
+
+
+# Make a list called rarebirdsList of the names of the rare birds,
+# using your dictionary rarebirds and the built-in method keys().
+
+rarebirdsList = list(rarebirds.keys())  # turn into list
+print(rarebirdsList)
+
+# Write some code that checks whether the sighting is in rarebirdsList.
+# If it isn’t, print out the statement: “that’s not one of the birds we’re looking for”.
+# If it is, print out the statement: “this is one of the birds we’re looking for!”
+
+if sighting in rarebirdsList:
+    print("This is one of the birds we're looking for!")
+else:
+    print("That's not one of the birds we're looking for.")
+
+
+
+# Using your encounter variable within a big while-loop,
+# modify the above code so that input is repeatedly requested from the user
+# until they input one of the birds in our rarebirds dictionary.
+# Hint: start the encounter by making encounter’s value True.
+# Make encounter’s value False within the nested if, elif and else statements.
+
+print("\n___________ encounter while loop ___________\n")
+
+encounter = True
+
+while True:
+    sighting = input("What do you see?: ").title()
+    rarebirdsList = list(rarebirds.keys())
+    if sighting not in rarebirdsList:
+        encounter = False
+        if encounter is False:
+            print("This is not one of the birds we're looking for.")
+    else:
+        print("This is one of the birds we're looking for!")
+        break
+
+
+# Ask the user for another input, with the prompt:
+# ‘Where do you see it? Input the correct code.’, and store this input in a variable called code.
+
+print("\n___________ ask user to give location of bird __________\n")
+
+code = int(input("Where do you see it? Input the correct code: "))
+# change input to integer so it matches the key in the codes dicitonary
+
+location = (codes[code])
+location = str(location).replace("{'", "").replace("'}", "")
+
+print(location)
+
+print("So you've seen a",sighting, location.lower(),'Wow!.')
+
+# In the if-statement, check whether the sighting is aggressive.
+# If it is, print out that it’s aggressive, and that we need to back away and cover our heads.
+# In addition, print out that we need to photograph the sighting at its location.
+
+# In the elif-statement, check whether the sighting is endangered.
+# If it is, print out that it’s endangered, and that we need to back away.
+
+# Also, print out that we need to photograph the sighting at its location.
+# In the else statement (i.e, the sighting is neither aggressive nor endangered)
+# print out that we need to photograph the ultra rare sighting at its location.
+# In all of these blocks, make use of the actions list and the variables sighting and location in your printouts.
+
+print("\n_________________ if, elif, and else statement to do actions ___________________ \n")
+
+if rarebirds[sighting]["Aggressive"] == True:
+    print(sighting + ",", "it's aggressive!", actions[0], actions[1], actions[2], "of the", sighting, location.lower())
+elif rarebirds[sighting]["Endangered"] == True:
+    print(sighting + ",", "it's endangered!", actions[1], actions[2], "of the", sighting, location.lower())
+else:
+    print(sighting + ",", "this is an ultra rare sighting!", actions[2], "of the", sighting, location.lower())
